@@ -1,0 +1,16 @@
+services:
+  typesetting-tools:
+    container_name: typesetting
+    build:
+      dockerfile: Dockerfile
+
+    volumes:
+      - .:/typesetting/
+
+    working_dir: /typesetting
+
+    # Interactive shell
+    stdin_open: true 
+    tty: true
+
+
