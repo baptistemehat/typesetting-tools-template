@@ -34,28 +34,34 @@ root@e537496129f2:/typesetting#
 It means you successfully attached your shell to the container and are now in the directory `/typesetting`.
 
 3. Run typesetting tools
+
 From there, you now have access to the typesetting tools provided by the docker image (see the [dockerhub page of the image](https://hub.docker.com/repository/docker/baptistemehat/typesetting-tools/) for details on what is included).
 
-You can either run them manually, for instance, if you want to generate a pdf slide deck from a markdown file contained in the `src/` directory:
+You can choose to run typesetting tools manually, for instance, if you want to generate a pdf slide deck from a markdown file contained in the `src/` directory:
 ```
 marp --input-dir=/typesetting/src --output=/typesetting/build --pdf 
 ```
 
-Or you can edit the `justfile` to create your own recipes.
+Or you can edit the `justfile` to create your own recipes, and then call them like so:
+```bash
+just marp-pdf
+```
 
 ## Troubleshooting
+### *The container "/typesetting" is already in use by container ...*
+You may encounter this error message when running:
 ```sh
 docker compose up -d
 ```
-
+In this case, the error would look something like this:
 ```
 Error response from daemon: Conflict. The container name "/typesetting" is already in use by container "9cb...f81". You have to remove (or rename) that container to be able to reuse that name.
 ```
-Run
+
+This error happens because `docker compose` tries to spawn a new container with a similar name to an existing container. To solve the issue, simply remove the container named `typesetting` and rerun the `docker compose up -d` command:
+
+
 ```sh
 docker rm typesetting
-```
-This will remove the existing `typesetting` docker container. You can now rerun the command:
-```sh
 docker compose up -d
 ```
