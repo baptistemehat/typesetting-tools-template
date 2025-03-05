@@ -37,7 +37,9 @@ It means you successfully attached your shell to the container and are now in th
 
 From there, you now have access to the typesetting tools provided by the docker image (see the [dockerhub page of the image](https://hub.docker.com/repository/docker/baptistemehat/typesetting-tools/) for details on what is included).
 
-Below are come example commands you can run within the container to use the provided tools:
+Below are come example commands you can run within the container to use the provided tools.
+
+### Example commands
 
 **`pdflatex`: generate pdf from latex:**
 ```sh
