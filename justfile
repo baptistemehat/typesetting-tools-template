@@ -1,4 +1,4 @@
-# Default justfile
+# Example justfile
 
 SRC_DIR:="/typesetting/src"
 BUILD_DIR:="/typesetting/build"

@@ -37,15 +37,25 @@ It means you successfully attached your shell to the container and are now in th
 
 From there, you now have access to the typesetting tools provided by the docker image (see the [dockerhub page of the image](https://hub.docker.com/repository/docker/baptistemehat/typesetting-tools/) for details on what is included).
 
-You can choose to run typesetting tools manually, for instance, if you want to generate a pdf slide deck from a markdown file contained in the `src/` directory:
+Below are come example commands you can run within the container to use the provided tools:
+
+**`pdflatex`: generate pdf from latex:**
+```sh
+pdflatex src/main.tex -output-directory=build/
 ```
+
+**`marp`: generate pdf slide deck from markdown files:**
+```sh
 marp --input-dir=/typesetting/src --output=/typesetting/build --pdf 
 ```
 
-Or you can edit the `justfile` to create your own recipes, and then call them like so:
-```bash
-just marp-pdf
+**`pandoc`: convert files from a typesetting format to another:**
+```sh
+pandoc --from markdown --to latex src/main.md --output build/main.tex
 ```
+
+> **Note**: the `just` task runner is also installed on the docker image, meaning you can define just recipes in justfiles for automation.
+An example justfile is provided in this repo, with example recipes for generating slide decks with `marp`.
 
 ## Troubleshooting
 ### *The container "/typesetting" is already in use by container ...*
